@@ -1,4 +1,4 @@
-<img align="center" src="https://raw.githubusercontent.com/erdos/erdos.stats/master/doc/logo.png" alt="erdos.stats logo"/>
+<p align="center"><img src="https://raw.githubusercontent.com/erdos/erdos.stats/master/doc/logo.png" alt="erdos.stats logo"/></p>
 
 # erdos.stats
 
