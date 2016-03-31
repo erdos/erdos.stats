@@ -9,10 +9,26 @@ First, you need to equire the namespace: `(require '[erdos.stats :as stats])`
 The following functions are implemented. For usage, see the examples and the source code.
 
 - sampling: `sample-with-probs`, `rand-samples`
-- exploration: `hist`, `report`
+- exploration: `hist`, `report`, `hist-print-ascii`
 - stats: `mean`, `median`, `median-low`, `median-high`, `mode`, `variance`, `sd` (aka. `standard-deviation`), `skewness`, `kurtosis`
 
 ## Examples
+
+### Quick histogram vector
+
+You can get a general idea about the distribution of values in a collection using the `hist` function. Given a collection it returns a vector of buckets that represents a histogram.
+
+```clojure
+(stats/hist (repeatedly 1000 stats/normal))
+;; => [1 9 25 54 74 134 157 174 150 90 67 43 13 5 3 1]
+```
+
+When given two arguments, the first argument is the number of buckets and the second argument is the collection.
+
+```clojure
+(stats/hist 3 (range 99))
+;; => [33 33 33]
+```
 
 ### Reporting
 

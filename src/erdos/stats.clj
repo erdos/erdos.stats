@@ -111,6 +111,10 @@
 (defn hist
   ([xs] (hist (min 16 (count xs)) xs))
   ([n xs]
+   (assert (and (integer? n) (pos? n))
+           "First arg must be a positive integer.")
+   (assert (and (coll? xs) (seq xs))
+           "Second arg must be a nonempty coll.")
    (let [m- (apply min xs)
          m+ (apply max xs)
          d  (double (- m+ m-))
@@ -118,6 +122,9 @@
          f  (fn [x] (int (quot (- x m- 0.0000001) w)))
          gs (group-by f xs)]
      (mapv (comp count gs) (range 0 n)))))
+
+;; (hist 2 (repeatedly 100000 normal))
+;; (hist 3 (range 99))
 
 
 (defn hist-print-ascii [xs]
