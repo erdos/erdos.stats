@@ -1,3 +1,5 @@
+![logo](https://raw.githubusercontent.com/erdos/erdos.stats/master/doc/logo.png)
+
 # erdos.stats
 
 Basic statistics utilities in Clojure.
