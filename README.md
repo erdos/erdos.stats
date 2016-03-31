@@ -1,0 +1,62 @@
+# erdos.stat
+
+Basic statistics utilities in Clojure.
+
+## Usage
+
+First, you need to equire the namespace: `(require '[erdos.stat :as stat])`
+
+The following functions are implemented. For usage, see the examples and the source code.
+
+- sampling: `sample-with-probs`, `rand-samples`
+- exploration: `hist`, `report`
+- stats: `mean`, `median`, `median-low`, `median-high`, `mode`, `variance`, `sd` (aka. `standard-deviation`), `skewness`, `kurtosis`
+
+## Examples
+
+### Reporting
+
+You can print basic statistics to the standard output.
+
+In this example, we create a series of random numbers with Gaussian distribution.
+
+```clojure
+(def xs (repeatedly 10000 (stat/normal)))
+```
+
+Calling `(stat/report xs)` results something like the following:
+
+```
+--------------
+Count:  10000
+Min:    -4.15101725230182
+Mean:   -0.008607583618416693
+Max:    3.875746881304692
+Median: -0.0038671443172906385
+Mode:   -0.5172982636402658
+Variance:   0.997574255434155
+Deviation:  0.9987863912940319
+Skewness:   -0.020849505804486506
+Kurtosis:   3.0074920441970137
+Histogram: 
+┌────────────────────────────────────────────────┐
+│                       ▖ ▐                      │
+│                      ▄███▙▖▖                   │
+│                    ████████▙▖                  │
+│                   ▐█████████▙█                 │
+│                 ▗██████████████                │
+│                ▟███████████████▙▄              │
+│              ▟▟██████████████████▙▖            │
+│          ▗▗▄████████████████████████▄▄         │
+└────────────────────────────────────────────────┘
+```
+
+
+## License
+
+Copyright © 2016 Janos Erdos
+
+Distributed under the Eclipse Public License either version 1.0 or (at
+your option) any later version.
+
+
