@@ -162,4 +162,4 @@
   (println "--------------"))
 
 ; EXAMPLE:
-(report (repeatedly 10000 normal))
+;; (report (repeatedly 10000 normal))
