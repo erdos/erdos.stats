@@ -151,9 +151,12 @@
       (println "│"))
     (println (str "└" (apply str (repeat (quot pw 2) "─")) "┘"))))
 
-;EXAMPLE: (hist-print-ascii (repeatedly 80000 normal))
+                                        ;EXAMPLE: (hist-print-ascii (repeatedly 80000 normal))
 
-(defn report [xs]
+
+(defn report
+  "Prints a nice report about the data series."
+  [xs]
   (println "--------------")
   (println "Count:" \tab (count xs))
   (println "Min:" \tab (apply min xs))
@@ -168,5 +171,9 @@
   (println "Histogram:") (hist-print-ascii xs)
   (println "--------------"))
 
-; EXAMPLE:
-;; (report (repeatedly 10000 normal))
+                                        ; EXAMPLE:
+;; (normal)
+;; (report (repeatedly 100000 normal))
+
+
+'OKIDOKI
