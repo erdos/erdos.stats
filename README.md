@@ -12,9 +12,18 @@ The following functions are implemented. For usage, see the examples and the sou
 
 - sampling: `sample-with-probs`, `rand-samples`
 - exploration: `hist`, `report`, `hist-print-ascii`
+- operations: `sum`, `prod`
 - stats: `mean`, `median`, `median-low`, `median-high`, `mode`, `variance`, `sd` (aka. `standard-deviation`), `skewness`, `kurtosis`
 
 ## Examples
+
+### Averages
+
+```clojure
+(mean [1 2 2 3 4]) ; => 2.5
+(mode [1 2 2 3 4]) ; => 2
+(median [1 2 2 3 4]) ; => 2
+```
 
 ### Quick histogram vector
 

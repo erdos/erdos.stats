@@ -6,6 +6,9 @@
   [2] https://docs.racket-lang.org/math/stats.html
 ")
 
+
+                                        ; SAMPLING
+
 (defn samples-with-probs [kps]
   (assert (map? kps))
   (assert (every? float? (vals kps)))
@@ -24,7 +27,6 @@
 ;; => {:c 7011, :a 1971, :b 1018}
   )
 
-
 (defn rand-samples
   "Uniformly random samples"
   ([n xs] (repeatedly n (partial rand-nth (vec xs))))
@@ -38,12 +40,20 @@
    (* (Math/sqrt (* -2.0 (Math/log (rand))))
       (Math/cos (* 2.0 Math/PI (rand))))))
 
+;; ops
+
+(defn sum "Summation of numbers"
+  ([xs] (reduce + 0.0 xs)))
+
+(defn prod "Product of numbers"
+  ([xs] (reduce * 1.0 xs)))
+
+;; stats
+
 (defn mean [xs]
   (when (seq xs)
     (/ (reduce + 0.0 xs) (count xs))))
 
-(defn sum [xs] (reduce + 0.0 xs))
-(defn prod [xs] (reduce * 1.0 xs))
 
 (defn median [xs]
   (when (seq xs)
