@@ -1,10 +1,10 @@
-# erdos.stat
+# erdos.stats
 
 Basic statistics utilities in Clojure.
 
 ## Usage
 
-First, you need to equire the namespace: `(require '[erdos.stat :as stat])`
+First, you need to equire the namespace: `(require '[erdos.stats :as stats])`
 
 The following functions are implemented. For usage, see the examples and the source code.
 
@@ -24,7 +24,7 @@ In this example, we create a series of random numbers with Gaussian distribution
 (def xs (repeatedly 10000 (stat/normal)))
 ```
 
-Calling `(stat/report xs)` results something like the following:
+Calling `(stats/report xs)` results something like the following:
 
 ```
 --------------
