@@ -1,4 +1,4 @@
-![logo](https://raw.githubusercontent.com/erdos/erdos.stats/master/doc/logo.png)
+-> ![logo](https://raw.githubusercontent.com/erdos/erdos.stats/master/doc/logo.png) <-
 
 # erdos.stats
 
