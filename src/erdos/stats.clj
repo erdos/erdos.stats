@@ -40,6 +40,18 @@
    (* (Math/sqrt (* -2.0 (Math/log (rand))))
       (Math/cos (* 2.0 Math/PI (rand))))))
 
+;; XXX: test this.
+'(defn t-student [k]
+  ;; http://stats.stackexchange.com/questions/70266/generating-random-numbers-from-a-t-distribution
+  (/ (normal)
+     (Math/sqrt
+      (/ (sum (map #(* % %)
+                   (repeatedly k normal)))  k))))
+
+
+
+;; (report (repeatedly 1000 (partial t-student 2)))
+
 ;; ops
 
 (defn sum "Summation of numbers"
@@ -90,7 +102,7 @@
 
 (defmacro square [x] `(let [x# ~x] (* x# x#)))
 
-(defmacro cube [x] `(Math/pow ~x 3))
+; (defmacro cube [x] `(Math/pow ~x 3))
 
 (defn variance
   "Variance = average of squared differences from the mean"
@@ -107,8 +119,8 @@
 (defn skewness [xs]
   (let [m (mean xs)
          s (sd xs)]
-    (/ (mean (for [x xs] (cube (- x m))))
-       (cube s))))
+    (/ (mean (for [x xs] (Math/pow (- x m) 3)))
+       (Math/pow s 3))))
 
 (defn kurtosis [xs]
   (let [m (mean xs)
@@ -119,6 +131,8 @@
                                         ; REPORTING
 
 (defn hist
+  "Returns a histogram as a vector.
+  EXAMPLE: (hist 3 (range 99)) => [33 33 33]"
   ([xs] (hist (min 16 (count xs)) xs))
   ([n xs]
    (assert (and (integer? n) (pos? n))
@@ -136,6 +150,26 @@
 ;; (hist 2 (repeatedly 100000 normal))
 ;; (hist 3 (range 99))
 
+(defn hist-sym
+  "Returns a histogram graphics as a symbol object.
+  EXAMPLE: (hist-sym 12 (repeatedly 1000 normal))"
+  ([xs] (hist-sym (min 12 (count xs)) xs))
+  ([w xs]
+   (assert (and (integer? w) (pos? w)))
+   (assert (and (coll? xs) (seq xs)))
+   (let [h  (hist w xs)
+         h+ (apply max h)
+         m  (vec " ▁▂▃▄▅▆▇█")
+         f   #(-> % double (/ (+ 0.00001 h+)) (* 9) int m)]
+     (as-> h *
+           (map f *)
+           (apply str *)
+           (str "▕" * "▏")
+           (symbol *)))))
+
+;; (hist-sym (repeatedly 10000 normal))
+;; (hist-sym 5 [1 2 3 3 3 2 1 1 2 3 4 5 5 5])
+;;
 
 (defn hist-print-ascii [xs]
   (let [ph 18 pw 100
@@ -178,12 +212,14 @@
   (println "Deviation:" \tab (sd xs))
   (println "Skewness:" \tab (skewness xs))
   (println "Kurtosis:" \tab (kurtosis xs))
-  (println "Histogram:") (hist-print-ascii xs)
+  ;;(println "Histogram:" \tab (hist-sym xs))
+  (println "Histogram:")
+  (hist-print-ascii xs)
   (println "--------------"))
 
-                                        ; EXAMPLE:
+                                        ; EXAMPLES:
 ;; (normal)
-;; (report (repeatedly 100000 normal))
+;; (report (repeatedly 1000000 normal))
+;; (report (range 100))
 
-
-'OKIDOKI
+'ok
