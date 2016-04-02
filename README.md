@@ -6,7 +6,9 @@ Basic statistics utilities in Clojure.
 
 ## Usage
 
-First, you need to equire the namespace: `(require '[erdos.stats :as stats])`
+- First, add the dependency to Leiningen from <a href="https://clojars.org/erdos.stats">Clojars</a>: `[erdos.stats "0.1.0-SNAPSHOT"]`
+- Fetch the dependencies with `lein deps`
+- You need to require the namespace: `(require '[erdos.stats :as stats])`
 
 The following functions are implemented. For usage, see the examples and the source code.
 
