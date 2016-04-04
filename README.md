@@ -50,7 +50,7 @@ You can print basic statistics to the standard output.
 In this example, we create a series of random numbers with Gaussian distribution.
 
 ```clojure
-(def xs (repeatedly 10000 (stat/normal)))
+(def xs (repeatedly 10000 stats/normal))
 ```
 
 Calling `(stats/report xs)` results something like the following:
