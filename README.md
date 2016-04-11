@@ -19,6 +19,8 @@ The following functions are implemented. For usage, see the examples and the sou
 
 ## Examples
 
+<img src="doc/example-1.gif"/>
+
 ### Averages
 
 ```clojure
