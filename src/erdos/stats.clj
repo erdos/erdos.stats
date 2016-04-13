@@ -66,6 +66,38 @@
   (when (seq xs)
     (/ (reduce + 0.0 xs) (count xs))))
 
+; (defn- grad- [a b ratio] (+ (* ratio b) (* (- 1.0 ratio) a)))
+
+;; (mapv (partial grad- 1 2) (range 0 1 0.15))
+
+(defn- grad* [xs ratio]
+  (let [c* (* ratio (dec (count xs)))
+        c+ (Math/ceil c*) c- (Math/floor c*)]
+    (if (= c+ c-)
+      (nth xs (int c*))
+      (let [xc- (nth xs (int c-))
+            xc+ (nth xs (int c+))
+            c** (rem c* 1.0)]
+        (+ (* c** xc+) (* (- 1.0 c**) xc-))))))
+
+;; (grad* (range 1000) 0.999999)
+(defn quantiles [n xs]
+  (mapv (partial grad* (vec (sort xs)))
+        (next (range 0 1 (/ 1.0 n)))))
+
+(def tertiles (partial quantiles 3))
+(def quartiles (partial quantiles 4))
+(def quintiles (partial quantiles 5))
+(def sextiles (partial quantiles 6))
+(def septiles (partial quantiles 7))
+(def octiles (partial quantiles 8))
+(def deciles (partial quantiles 10))
+;; (quartiles (range 101))
+
+;; (quantiles 4 (range 0 101))
+;; (grad* [1 1.5 2 2.5 3 3.5 4] 0.7)
+;; (grad* [1 2 3 4] 0.7)
+; (defn quantiles [n xs])
 
 (defn median [xs]
   (when (seq xs)

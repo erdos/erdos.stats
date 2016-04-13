@@ -13,6 +13,7 @@ Basic statistics utilities in Clojure.
 The following functions are implemented. For usage, see the examples and the source code.
 
 - sampling: `sample-with-probs`, `rand-samples`
+- quantiles: `quantiles`, `tertiles`, `quintiles`, `sextiles`, etc.
 - exploration: `hist`, `report`, `hist-print-ascii`
 - operations: `sum`, `prod`
 - stats: `mean`, `median`, `median-low`, `median-high`, `mode`, `variance`, `sd` (aka. `standard-deviation`), `skewness`, `kurtosis`
